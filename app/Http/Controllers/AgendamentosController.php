@@ -6,6 +6,8 @@ use App\Agendamento;
 use App\Especialidade;
 use App\Paciente;
 use App\Medico;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class AgendamentosController extends Controller
@@ -18,7 +20,11 @@ class AgendamentosController extends Controller
     public function index()
     {
         $agendamentos = Agendamento::all();
-        return view('agendamentos.lista')->with('agendamentos', $agendamentos);
+        $verifyPaciente = Paciente::where('user_id', Auth::user()->id)->first();
+
+        return view('agendamentos.lista')
+                ->with('agendamentos', $agendamentos)
+                ->with('verifyPaciente', $verifyPaciente);
     }
 
     /**
@@ -33,7 +39,6 @@ class AgendamentosController extends Controller
         $pacientes = Paciente::all();
         $medicos = Medico::all();
         $especialidades = Especialidade::all();
-
         return view('agendamentos.form')->with('pacientes', $pacientes)
                                         ->with('medicos', $medicos)
                                         ->with('method', $method)

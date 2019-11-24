@@ -18,6 +18,8 @@ class CreatePacientesTable extends Migration
             $table->string('nome');
             $table->enum('sexo', ['M', 'F']);
             $table->date('data_nascimento');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('telefone')->nullable();
             $table->string('endereco')->nullable();
             $table->timestamps();

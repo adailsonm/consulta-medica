@@ -6,6 +6,8 @@ use App\Paciente;
 use App\Medico;
 use App\Agendamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use DB;
 
 class HomeController extends Controller
@@ -29,6 +31,7 @@ class HomeController extends Controller
     {
         $num_pacientes = Paciente::count();
         $num_medicos = Medico::count();
+        $verifyPaciente = Paciente::where('user_id', Auth::user()->id)->first();
         $consultas_hoje = DB::table('agendamentos')
                                 ->whereDate('data', date('Y-m-d'))
                                 ->count();
@@ -36,6 +39,7 @@ class HomeController extends Controller
 
         return view('home')->with('num_pacientes', $num_pacientes)
                             ->with('num_medicos', $num_medicos)
+                            ->with('verifyPaciente', $verifyPaciente)
                             ->with('consultas_hoje', $consultas_hoje);
     }
 }

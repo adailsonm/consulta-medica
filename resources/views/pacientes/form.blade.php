@@ -23,22 +23,27 @@
                         {{ csrf_field() }}
                         
                             {{ method_field('PUT') }}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" class="form-control" value="{{ $paciente->user->email }}" required/>
+                        </div>
                     @else
                     <form action="{{ route('pacientes.store') }}" method="post">
                         {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" class="form-control"  required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input id="senha" type="password" name="senha" class="form-control" required/>
+                        </div>
                     @endif
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input id="nome" type="text" name="nome" class="form-control" value="{{ $paciente->nome }}" required/>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" name="email" class="form-control" value="{{ $paciente->email }}" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="senha">Senha</label>
-                            <input id="senha" type="password" name="senha" class="form-control" value="{{ $paciente->senha }}" required/>
-                        </div>
+
                         
 
                         <div class="form-group">

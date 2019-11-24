@@ -32,7 +32,7 @@
 
                     <!-- Branding Image -->
                     <a class="logo-image" href="{{ url('/home') }}">
-                        <img src="img/logo.png" width="165px" height="50px" alt="Logo sistema de agendamento">
+                        <img src="{{ url('/img/logo.png') }}" width="165px" height="50px" alt="Logo sistema de agendamento">
                     </a>
                 </div>
 
@@ -40,8 +40,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if (!Auth::guest())
+                        @if (empty($verifyPaciente))
                         <li><a href="{{ url('/pacientes') }}">Pacientes</a></li>
                         <li><a href="{{ url('/medicos') }}">Médicos</a></li>
+
+                        @endif
                         <li><a href="{{ url('/agendamentos') }}">Agendamentos</a></li>
                         @endif
                     </ul>

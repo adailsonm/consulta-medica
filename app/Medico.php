@@ -16,4 +16,9 @@ class Medico extends Model
     {
         return $this->belongsTo(Especialidade::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

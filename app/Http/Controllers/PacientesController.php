@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Paciente;
+use App\User;
+
 use Illuminate\Http\Request;
 
 class PacientesController extends Controller
@@ -15,7 +17,8 @@ class PacientesController extends Controller
     public function index()
     {
         $pacientes = Paciente::all();
-        return view('pacientes.lista')->with('pacientes', $pacientes);
+        return view('pacientes.lista')
+                        ->with('pacientes', $pacientes);
     }
 
     /**
@@ -41,6 +44,7 @@ class PacientesController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'nome' => 'required|min:3',
+            'email' => 'required',
             'data_nascimento' => 'required',
             'telefone' => 'required',
         ]);
@@ -48,8 +52,15 @@ class PacientesController extends Controller
             return back()->withErrors($validator);
         } else {
             $paciente = new Paciente();
+            $user = new User();
+
             $paciente->nome = $request->input('nome');
             $paciente->sexo = $request->input('sexo');
+            $user->name = $request->input('nome');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('senha'));
+            $user->save();
+            $paciente->user_id = $user->id;
             $paciente->data_nascimento = $request->input('data_nascimento');
             $paciente->telefone = $request->input('telefone');
             $paciente->endereco = $request->input('endereco');

@@ -47,6 +47,8 @@
 						</a>
 					</div>
 				</div>
+				@if (empty($verifyPaciente))
+
 				<div class="col-lg-4 col-md-4">
 					<div class="panel dash">
 						<div class="panel-heading">
@@ -59,6 +61,7 @@
 								</div>
 							</div>
 						</div>
+
 						<a href="{{ route('agendamentos.index') }}">
 							<div class="panel-footer">
 								<span class="pull-left">Consultas de hoje</span>
@@ -67,6 +70,8 @@
 							</div>
 						</a>
 					</div>
+					@endif
+
 				</div>
 			</div>		
 		</div>

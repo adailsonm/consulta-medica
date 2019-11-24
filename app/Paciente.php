@@ -13,6 +13,9 @@ class Paciente extends Model
         'telefone',
         'endereco',
     ];
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
     public function agendamentos()
     {
         return $this->hasMany(Agendamento::class);

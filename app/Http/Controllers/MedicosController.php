@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Medico;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\Especialidade;
 
 use Illuminate\Http\Request;
@@ -17,6 +19,7 @@ class MedicosController extends Controller
     public function index()
     {
         $medicos = Medico::all();
+
         return view('medicos.lista')->with('medicos', $medicos);
     }
 
@@ -31,13 +34,16 @@ class MedicosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $method = 'post';
         $medico = new Medico();
+        $user = new User();
+
         $especialides = Especialidade::all();
         return view('medicos.form')->with('method', $method)
                                     ->with('especialidades', $especialides)
+                                    ->with('user', $user)
                                      ->with('medico', $medico);
     }
 
@@ -59,9 +65,16 @@ class MedicosController extends Controller
             return back()->withErrors($validator);
         } else {
             $medico = new Medico();
+            $user = new User();
+
             $medico->nome = $request->input('nome');
             $medico->crm = $request->input('crm');
-            $medico->telefone = $request->input('telefone');
+            $medico->telefone = $request->input('telefone'); 
+            $user->name = $request->input('nome');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('senha'));
+            $user->save();
+            $medico->user_id = $user->id;
             $medico->especialidade_id = $request->input('especialidade_id');
             $medico->save();
 
@@ -89,7 +102,7 @@ class MedicosController extends Controller
     public function edit($id)
     {
         $method = 'put';
-        $medico = Medico::with('especialidade')->find($id);
+        $medico = Medico::with(['especialidade', 'user'])->find($id);
         $especialidades = Especialidade::all();
         return view('medicos.form')->with('method', $method)
         ->with('medico', $medico)
@@ -109,6 +122,7 @@ class MedicosController extends Controller
             'nome' => 'required|min:3',
             'crm' => 'required',
             'telefone' => 'required',
+            'email' => 'required',
             'especialidade_id' => 'required'
         ]);
         if ($validator->fails()) {
@@ -117,6 +131,7 @@ class MedicosController extends Controller
             $medico = Medico::find($id);
             $medico->nome = $request->input('nome');
             $medico->crm = $request->input('crm');
+            $medico->user->email = $request->input('email');
             $medico->telefone = $request->input('telefone');
             $medico->especialidade_id = $request->input('especialidade_id');
             $medico->save();
