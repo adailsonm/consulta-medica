@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agendamento extends Model
 {
-    //
 
     public function medico()
     {
