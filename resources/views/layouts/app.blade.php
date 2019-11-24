@@ -31,8 +31,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}">
-                        Sistema de Agendamento
+                    <a class="logo-image" href="{{ url('/home') }}">
+                        <img src="img/logo.png" width="165px" height="50px" alt="Logo sistema de agendamento">
                     </a>
                 </div>
 
