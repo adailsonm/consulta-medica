@@ -109,7 +109,7 @@ class MedicosController extends Controller
             'nome' => 'required|min:3',
             'crm' => 'required',
             'telefone' => 'required',
-            'especialide_id' => 'required'
+            'especialidade_id' => 'required'
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator);

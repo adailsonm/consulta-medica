@@ -32,6 +32,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" class="form-control" value="{{ $medico->email }}" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input id="senha" type="password" name="senha" class="form-control" value="{{ $medico->senha }}" required/>
+                        </div>
+
+                        <div class="form-group">
                             <label for="crm">CRM</label>
                             <input id="crm" type="text" name="crm" value="{{ $medico->crm }}" class="form-control" required/>
                         </div>
