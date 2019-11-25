@@ -26,7 +26,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Sistema de Agendamento</a>
+        <a class="navbar-brand" href="#">
+          <img src="{{ url('/img/logo.png')}}" alt="" width="170px" height="60px">
+        </a>
         <a class="btn btn-danger" href="{{ url('/entrar') }}">Entrar</a>
       </div>
     </nav>
@@ -75,37 +77,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Call to Action -->
-    <section class="call-to-action text-white text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h2 class="mb-4">Ainda não possui cadastro?</h2>
-          </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-			  <div class="row">
-				<div class="col-12 col-md-12">
-          <a class="btn btn-block btn-lg btn-danger" href="{{ url('/cadastrar') }}">Cadastre-se gratuitamente</a>
-				</div>
-			  </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-            <p class="text-muted small mb-4 mb-lg-0">&copy; Desenvolvimento Web 2019</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-	
   </body>
 
 </html>
