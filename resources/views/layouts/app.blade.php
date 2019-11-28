@@ -31,7 +31,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="logo-image" href="{{ url('/home') }}">
+                    <a class="logo-image" href="{{ url('/') }}">
                         <img src="{{ url('/img/logo.png') }}" width="165px" height="50px" alt="Logo sistema de agendamento">
                     </a>
                 </div>
